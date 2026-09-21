@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Activity, Mail, Lock, AlertCircle, ArrowRight, ShieldCheck, Stethoscope, User, UserPlus } from 'lucide-react';
 import { Button } from '../../components/common/Button';
+import { Badge } from '../../components/common/Badge';
 import { useAuth } from '../../context/AuthContext';
 
 export const LoginPage = () => {
@@ -65,21 +66,21 @@ export const LoginPage = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
-      <div className="w-full max-w-4xl bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+      <div className="w-full max-w-4xl bg-white rounded-2xl border border-slate-200/80 shadow-dropdown overflow-hidden grid grid-cols-1 lg:grid-cols-12">
         {/* Left Form */}
         <div className="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between">
           <div>
             {/* Header */}
             <Link to="/" className="inline-flex items-center gap-2.5 mb-8">
-              <div className="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-md shadow-brand-500/20">
+              <div className="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-sm">
                 <Activity className="w-5 h-5" />
               </div>
-              <span className="text-xl font-black tracking-tight text-slate-900">
+              <span className="text-xl font-bold tracking-tight text-slate-900">
                 Aura<span className="text-brand-600">Health</span>
               </span>
             </Link>
 
-            <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+            <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
               Hospital Portal Sign In
             </h2>
             <p className="text-xs text-slate-500 mt-1 mb-6">
@@ -160,7 +161,7 @@ export const LoginPage = () => {
                 type="submit"
                 size="lg"
                 isLoading={loading}
-                className="w-full shadow-lg shadow-brand-500/20 mt-2"
+                className="w-full mt-2"
               >
                 Sign In to Portal
               </Button>
@@ -176,18 +177,18 @@ export const LoginPage = () => {
           </div>
         </div>
 
-        {/* Right Info & 1-Click Demo Accounts */}
-        <div className="lg:col-span-5 bg-gradient-to-br from-slate-900 to-slate-950 p-8 sm:p-10 text-white flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-slate-800">
+        {/* Right Info & 1-Click Demo Accounts (Light Healthcare Theme) */}
+        <div className="lg:col-span-5 bg-slate-50/70 p-8 sm:p-10 text-slate-800 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-slate-200/80">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 text-brand-300 text-xs font-semibold mb-4">
-              <span>Quick Review Access</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs font-semibold mb-3">
+              <span>Verified Test Accounts</span>
             </div>
 
-            <h3 className="text-xl font-bold text-white tracking-tight mb-2">
-              1-Click Demo Accounts
+            <h3 className="text-lg font-bold text-slate-900 tracking-tight mb-1">
+              1-Click Demo Logins
             </h3>
-            <p className="text-xs text-slate-400 leading-relaxed mb-6">
-              Click any role below to pre-fill verified demo credentials with full permissions:
+            <p className="text-xs text-slate-500 leading-relaxed mb-5">
+              Click any clinical or patient role below to autofill verified demo credentials:
             </p>
 
             <div className="space-y-2.5">
@@ -195,87 +196,87 @@ export const LoginPage = () => {
               <button
                 type="button"
                 onClick={() => fillDemoAccount('admin@hospital.com', 'Password@123')}
-                className="w-full p-3 rounded-xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 text-left transition-all hover:border-brand-500 flex items-center justify-between group"
+                className="w-full p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/80 text-left transition-all hover:border-brand-400 shadow-soft flex items-center justify-between group"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 border border-purple-100 flex items-center justify-center">
                     <ShieldCheck className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-white group-hover:text-brand-400 transition-colors">
+                    <h4 className="text-xs font-bold text-slate-900 group-hover:text-brand-700 transition-colors">
                       Admin Portal
                     </h4>
-                    <p className="text-[11px] text-slate-400">admin@hospital.com</p>
+                    <p className="text-[11px] text-slate-500">admin@hospital.com</p>
                   </div>
                 </div>
-                <span className="text-[11px] text-slate-400 group-hover:text-white">Auto-fill →</span>
+                <span className="text-[11px] font-medium text-slate-400 group-hover:text-brand-600">Autofill →</span>
               </button>
 
               {/* Doctor Button */}
               <button
                 type="button"
                 onClick={() => fillDemoAccount('doctor@hospital.com', 'Password@123')}
-                className="w-full p-3 rounded-xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 text-left transition-all hover:border-brand-500 flex items-center justify-between group"
+                className="w-full p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/80 text-left transition-all hover:border-brand-400 shadow-soft flex items-center justify-between group"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-teal-500/20 text-teal-400 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-lg bg-teal-50 text-teal-600 border border-teal-100 flex items-center justify-center">
                     <Stethoscope className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-white group-hover:text-brand-400 transition-colors">
+                    <h4 className="text-xs font-bold text-slate-900 group-hover:text-brand-700 transition-colors">
                       Doctor / Physician
                     </h4>
-                    <p className="text-[11px] text-slate-400">doctor@hospital.com</p>
+                    <p className="text-[11px] text-slate-500">doctor@hospital.com</p>
                   </div>
                 </div>
-                <span className="text-[11px] text-slate-400 group-hover:text-white">Auto-fill →</span>
+                <span className="text-[11px] font-medium text-slate-400 group-hover:text-brand-600">Autofill →</span>
               </button>
 
               {/* Receptionist Button */}
               <button
                 type="button"
                 onClick={() => fillDemoAccount('receptionist@hospital.com', 'Password@123')}
-                className="w-full p-3 rounded-xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 text-left transition-all hover:border-brand-500 flex items-center justify-between group"
+                className="w-full p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/80 text-left transition-all hover:border-brand-400 shadow-soft flex items-center justify-between group"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 border border-indigo-100 flex items-center justify-center">
                     <UserPlus className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-white group-hover:text-brand-400 transition-colors">
+                    <h4 className="text-xs font-bold text-slate-900 group-hover:text-brand-700 transition-colors">
                       Receptionist / Front Desk
                     </h4>
-                    <p className="text-[11px] text-slate-400">receptionist@hospital.com</p>
+                    <p className="text-[11px] text-slate-500">receptionist@hospital.com</p>
                   </div>
                 </div>
-                <span className="text-[11px] text-slate-400 group-hover:text-white">Auto-fill →</span>
+                <span className="text-[11px] font-medium text-slate-400 group-hover:text-brand-600">Autofill →</span>
               </button>
 
               {/* Patient Button */}
               <button
                 type="button"
                 onClick={() => fillDemoAccount('patient@hospital.com', 'Password@123')}
-                className="w-full p-3 rounded-xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 text-left transition-all hover:border-brand-500 flex items-center justify-between group"
+                className="w-full p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/80 text-left transition-all hover:border-brand-400 shadow-soft flex items-center justify-between group"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-lg bg-cyan-50 text-cyan-600 border border-cyan-100 flex items-center justify-center">
                     <User className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-white group-hover:text-brand-400 transition-colors">
+                    <h4 className="text-xs font-bold text-slate-900 group-hover:text-brand-700 transition-colors">
                       Patient Portal
                     </h4>
-                    <p className="text-[11px] text-slate-400">patient@hospital.com</p>
+                    <p className="text-[11px] text-slate-500">patient@hospital.com</p>
                   </div>
                 </div>
-                <span className="text-[11px] text-slate-400 group-hover:text-white">Auto-fill →</span>
+                <span className="text-[11px] font-medium text-slate-400 group-hover:text-brand-600">Autofill →</span>
               </button>
             </div>
           </div>
 
-          <div className="pt-6 mt-6 border-t border-slate-800 text-[11px] text-slate-500">
-            <p>Demo Password: <span className="text-slate-300 font-mono">Password@123</span></p>
-            <p className="mt-0.5">Role-based access is strictly enforced at backend API boundaries.</p>
+          <div className="pt-5 mt-5 border-t border-slate-200/80 text-[11px] text-slate-500">
+            <p>Demo Password: <span className="text-slate-800 font-mono font-semibold">Password@123</span></p>
+            <p className="mt-0.5">Role-based access control is enforced at API endpoints.</p>
           </div>
         </div>
       </div>

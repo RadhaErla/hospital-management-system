@@ -62,17 +62,17 @@ export const RegisterPage = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
-      <div className="w-full max-w-2xl bg-white rounded-3xl border border-slate-200 shadow-xl p-8 sm:p-12">
+      <div className="w-full max-w-2xl bg-white rounded-2xl border border-slate-200/80 shadow-dropdown p-8 sm:p-12">
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-2.5 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-md shadow-brand-500/20">
+            <div className="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-sm">
               <Activity className="w-5 h-5" />
             </div>
-            <span className="text-xl font-black tracking-tight text-slate-900">
+            <span className="text-xl font-bold tracking-tight text-slate-900">
               Aura<span className="text-brand-600">Health</span>
             </span>
           </Link>
-          <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+          <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
             Patient Portal Registration
           </h2>
           <p className="text-xs text-slate-500 mt-1">
@@ -246,7 +246,7 @@ export const RegisterPage = () => {
             type="submit"
             size="lg"
             isLoading={loading}
-            className="w-full shadow-lg shadow-brand-500/20 mt-4"
+            className="w-full mt-4"
           >
             Create Patient Account
           </Button>

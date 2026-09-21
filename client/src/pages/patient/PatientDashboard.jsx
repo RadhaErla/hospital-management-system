@@ -10,6 +10,7 @@ import {
   ArrowRight,
   AlertCircle,
   Plus,
+  Activity,
 } from 'lucide-react';
 import { Card } from '../../components/common/Card';
 import { Button } from '../../components/common/Button';
@@ -60,26 +61,26 @@ export const PatientDashboard = () => {
 
   return (
     <div className="space-y-6">
-      {/* Welcome Banner */}
-      <div className="p-6 sm:p-8 bg-gradient-to-r from-brand-700 via-teal-700 to-slate-900 rounded-3xl text-white shadow-xl shadow-brand-900/10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+      {/* Welcome Banner (Light Healthcare Style) */}
+      <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-soft flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="space-y-1.5">
-          <span className="text-xs font-bold uppercase tracking-widest text-brand-300">
-            Patient Health Dashboard
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-xs font-semibold">
+            <Activity className="w-3.5 h-3.5 text-brand-600" />
+            <span>Personal Health Portal</span>
+          </div>
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
             Welcome back, {user?.name}
           </h2>
-          <p className="text-xs sm:text-sm text-slate-200 max-w-xl">
-            Access your consultation schedule, digital prescriptions, laboratory diagnostics, and invoices.
+          <p className="text-xs text-slate-500 max-w-xl">
+            Access your upcoming appointments, digital prescriptions, laboratory diagnostics, and hospital billing statements.
           </p>
         </div>
         <div className="flex-shrink-0">
           <Button
             size="lg"
-            variant="secondary"
+            variant="primary"
             icon={Plus}
             onClick={() => setIsBookingOpen(true)}
-            className="shadow-lg"
           >
             Book Appointment
           </Button>
@@ -90,64 +91,64 @@ export const PatientDashboard = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="p-5">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
               Total Appointments
             </span>
-            <div className="w-9 h-9 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center">
-              <Calendar className="w-5 h-5" />
+            <div className="w-9 h-9 rounded-xl bg-brand-50 text-brand-600 border border-brand-100 flex items-center justify-center">
+              <Calendar className="w-4 h-4" />
             </div>
           </div>
-          <h3 className="text-2xl font-black text-slate-900 mt-2">
+          <h3 className="text-2xl font-bold text-slate-900 mt-2 tracking-tight">
             {stats?.totalAppointments || 0}
           </h3>
-          <p className="text-[11px] text-slate-400 mt-0.5">Consultations to date</p>
+          <p className="text-[11px] text-slate-500 mt-1">Consultations to date</p>
         </Card>
 
         <Card className="p-5">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
               Pending Visits
             </span>
-            <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
-              <Clock className="w-5 h-5" />
+            <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 border border-amber-100 flex items-center justify-center">
+              <Clock className="w-4 h-4" />
             </div>
           </div>
-          <h3 className="text-2xl font-black text-slate-900 mt-2">
+          <h3 className="text-2xl font-bold text-slate-900 mt-2 tracking-tight">
             {stats?.pendingAppointments || 0}
           </h3>
-          <p className="text-[11px] text-slate-400 mt-0.5">Awaiting confirmation</p>
+          <p className="text-[11px] text-slate-500 mt-1">Awaiting confirmation</p>
         </Card>
 
         <Card className="p-5">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-              Outstanding Invoices
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+              Outstanding Bills
             </span>
-            <div className="w-9 h-9 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center">
-              <CreditCard className="w-5 h-5" />
+            <div className="w-9 h-9 rounded-xl bg-rose-50 text-rose-600 border border-rose-100 flex items-center justify-center">
+              <CreditCard className="w-4 h-4" />
             </div>
           </div>
-          <h3 className="text-2xl font-black text-slate-900 mt-2">
+          <h3 className="text-2xl font-bold text-slate-900 mt-2 tracking-tight">
             {stats?.outstandingBillsCount || 0}
           </h3>
-          <p className="text-[11px] text-rose-600 font-semibold mt-0.5">
+          <p className="text-[11px] text-rose-600 font-semibold mt-1">
             ${stats?.outstandingBalance || 0} balance due
           </p>
         </Card>
 
         <Card className="p-5">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
               Medical Records
             </span>
-            <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
-              <ClipboardList className="w-5 h-5" />
+            <div className="w-9 h-9 rounded-xl bg-sky-50 text-sky-600 border border-sky-100 flex items-center justify-center">
+              <ClipboardList className="w-4 h-4" />
             </div>
           </div>
-          <h3 className="text-2xl font-black text-slate-900 mt-2">
+          <h3 className="text-2xl font-bold text-slate-900 mt-2 tracking-tight">
             {stats?.recentRecords?.length || 0}
           </h3>
-          <p className="text-[11px] text-slate-400 mt-0.5">Clinical entries logged</p>
+          <p className="text-[11px] text-slate-500 mt-1">Clinical records on file</p>
         </Card>
       </div>
 
@@ -166,10 +167,10 @@ export const PatientDashboard = () => {
             </Button>
           }
         >
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200/80">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-brand-100 text-brand-700 font-bold flex items-center justify-center text-base flex-shrink-0">
-                <Stethoscope className="w-6 h-6" />
+              <div className="w-11 h-11 rounded-xl bg-brand-50 border border-brand-200 text-brand-700 font-bold flex items-center justify-center text-base flex-shrink-0">
+                <Stethoscope className="w-5 h-5" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
@@ -179,7 +180,7 @@ export const PatientDashboard = () => {
                   <Badge size="sm">{nextApp.status}</Badge>
                 </div>
                 <p className="text-xs text-brand-700 font-medium">
-                  {nextApp.doctor?.department?.name || 'Specialist'}
+                  {nextApp.doctor?.department?.name || 'Medical Specialist'}
                 </p>
                 <p className="text-xs text-slate-500 mt-0.5">Reason: {nextApp.reason}</p>
               </div>
@@ -187,11 +188,11 @@ export const PatientDashboard = () => {
 
             <div className="flex items-center gap-4 sm:border-l sm:border-slate-200 sm:pl-6 text-xs text-slate-600">
               <div>
-                <span className="text-slate-400 block font-semibold uppercase">Date</span>
+                <span className="text-slate-400 block font-semibold uppercase text-[10px]">Date</span>
                 <span className="font-bold text-slate-900">{nextApp.date}</span>
               </div>
               <div>
-                <span className="text-slate-400 block font-semibold uppercase">Time Slot</span>
+                <span className="text-slate-400 block font-semibold uppercase text-[10px]">Time Slot</span>
                 <span className="font-bold text-slate-900">
                   {nextApp.timeSlot?.startTime} - {nextApp.timeSlot?.endTime}
                 </span>
@@ -203,10 +204,10 @@ export const PatientDashboard = () => {
         <Card className="p-6 text-center border-dashed">
           <h4 className="text-sm font-bold text-slate-800">No Upcoming Appointments</h4>
           <p className="text-xs text-slate-500 mt-1 mb-4">
-            You don't have any pending visits scheduled.
+            You don't have any scheduled appointments right now.
           </p>
           <Button variant="primary" size="sm" onClick={() => setIsBookingOpen(true)}>
-            Schedule New Visit
+            Schedule Consultation
           </Button>
         </Card>
       )}
@@ -216,7 +217,7 @@ export const PatientDashboard = () => {
         {/* Recent Prescriptions */}
         <Card
           title="Recent Prescriptions"
-          subtitle="Issued by attending physicians"
+          subtitle="Issued by your attending physicians"
           action={
             <Button
               variant="ghost"
@@ -228,15 +229,15 @@ export const PatientDashboard = () => {
           }
         >
           {stats?.recentPrescriptions?.length > 0 ? (
-            <div className="space-y-3">
+            <div className="space-y-2.5">
               {stats.recentPrescriptions.map((rx) => (
                 <div
                   key={rx._id}
-                  className="p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 transition-colors flex items-center justify-between"
+                  className="p-3.5 rounded-xl border border-slate-200/80 hover:border-brand-300 transition-colors flex items-center justify-between"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center">
-                      <FileText className="w-5 h-5" />
+                    <div className="w-8 h-8 rounded-lg bg-teal-50 text-teal-600 border border-teal-100 flex items-center justify-center">
+                      <FileText className="w-4 h-4" />
                     </div>
                     <div>
                       <h5 className="text-xs font-bold text-slate-900">
@@ -265,7 +266,7 @@ export const PatientDashboard = () => {
         {/* Recent Medical Records */}
         <Card
           title="Recent Medical Records"
-          subtitle="Clinical EMR history & vitals"
+          subtitle="Clinical EMR history & vital checks"
           action={
             <Button
               variant="ghost"
@@ -277,11 +278,11 @@ export const PatientDashboard = () => {
           }
         >
           {stats?.recentRecords?.length > 0 ? (
-            <div className="space-y-3">
+            <div className="space-y-2.5">
               {stats.recentRecords.map((rec) => (
                 <div
                   key={rec._id}
-                  className="p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 transition-colors"
+                  className="p-3.5 rounded-xl border border-slate-200/80 hover:border-brand-300 transition-colors"
                 >
                   <div className="flex items-center justify-between mb-1">
                     <h5 className="text-xs font-bold text-slate-900">{rec.diagnosis}</h5>
@@ -292,9 +293,11 @@ export const PatientDashboard = () => {
                   <p className="text-xs text-slate-600 line-clamp-1">{rec.treatment}</p>
                   {rec.vitals?.bp && (
                     <div className="mt-2 flex items-center gap-2 text-[10px] text-slate-500 font-medium">
-                      <span className="px-1.5 py-0.5 bg-slate-100 rounded">BP: {rec.vitals.bp}</span>
+                      <span className="px-1.5 py-0.5 bg-slate-100 rounded border border-slate-200">
+                        BP: {rec.vitals.bp}
+                      </span>
                       {rec.vitals.pulse && (
-                        <span className="px-1.5 py-0.5 bg-slate-100 rounded">
+                        <span className="px-1.5 py-0.5 bg-slate-100 rounded border border-slate-200">
                           Pulse: {rec.vitals.pulse}
                         </span>
                       )}

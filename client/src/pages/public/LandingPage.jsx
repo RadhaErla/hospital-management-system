@@ -18,9 +18,13 @@ import {
   Phone,
   Mail,
   MapPin,
-  CheckCircle,
+  CheckCircle2,
+  FileText,
+  CreditCard,
+  ChevronRight,
 } from 'lucide-react';
 import { Button } from '../../components/common/Button';
+import { Badge } from '../../components/common/Badge';
 import { PublicNavbar } from '../../components/layout/PublicNavbar';
 import { PublicFooter } from '../../components/layout/PublicFooter';
 import { BookingModal } from '../../components/appointments/BookingModal';
@@ -75,27 +79,24 @@ export const LandingPage = () => {
       <PublicNavbar />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 bg-gradient-to-b from-brand-50/70 via-slate-50 to-slate-50">
+      <section className="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 bg-white border-b border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100 text-brand-800 text-xs font-semibold tracking-wide">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 border border-brand-200 text-brand-800 text-xs font-semibold tracking-wide">
                 <ShieldCheck className="w-4 h-4 text-brand-600" />
-                <span>Modern Healthcare & Electronic Medical Records</span>
+                <span>Certified Clinical Excellence & Digital EMR</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
-                Advanced Care. <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-teal-500">
-                  Seamless Clinical
-                </span>{' '}
-                Experience.
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.15]">
+                Quality Healthcare, <br />
+                <span className="text-brand-600">Simplified</span>
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                AuraHealth connects patients, board-certified specialists, and hospital staff with
-                instant appointment scheduling, real-time diagnostic reports, and digital prescriptions.
+              <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                A modern, connected hospital management platform delivering seamless appointment booking,
+                electronic clinical records, and direct specialist coordination for patients and medical staff.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
@@ -104,7 +105,7 @@ export const LandingPage = () => {
                   variant="primary"
                   icon={Calendar}
                   onClick={() => handleBookClick()}
-                  className="w-full sm:w-auto shadow-lg shadow-brand-600/20"
+                  className="w-full sm:w-auto"
                 >
                   Book Appointment
                 </Button>
@@ -123,52 +124,50 @@ export const LandingPage = () => {
               </div>
 
               {/* Trust Indicators */}
-              <div className="pt-6 border-t border-slate-200/80 grid grid-cols-3 gap-4 text-center lg:text-left">
+              <div className="pt-8 border-t border-slate-100 grid grid-cols-3 gap-6 text-center lg:text-left">
                 <div>
-                  <p className="text-2xl sm:text-3xl font-black text-slate-900">10+</p>
-                  <p className="text-xs text-slate-500 font-medium mt-0.5">Specialties</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">10+</p>
+                  <p className="text-xs text-slate-500 font-medium mt-0.5">Specialized Units</p>
                 </div>
                 <div>
-                  <p className="text-2xl sm:text-3xl font-black text-slate-900">100%</p>
-                  <p className="text-xs text-slate-500 font-medium mt-0.5">Verified Doctors</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">100%</p>
+                  <p className="text-xs text-slate-500 font-medium mt-0.5">Verified Physicians</p>
                 </div>
                 <div>
-                  <p className="text-2xl sm:text-3xl font-black text-slate-900">24/7</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">24/7</p>
                   <p className="text-xs text-slate-500 font-medium mt-0.5">Emergency Care</p>
                 </div>
               </div>
             </div>
 
-            {/* Right Card / Visual */}
+            {/* Right Card / Visual Showcase */}
             <div className="lg:col-span-5 relative">
-              <div className="relative mx-auto max-w-md bg-white rounded-3xl p-6 shadow-2xl border border-slate-200/80">
+              <div className="relative mx-auto max-w-md bg-white rounded-2xl p-6 shadow-dropdown border border-slate-200/80">
                 <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold">
+                    <div className="w-12 h-12 rounded-xl bg-brand-50 text-brand-700 border border-brand-100 flex items-center justify-center font-bold">
                       <Stethoscope className="w-6 h-6" />
                     </div>
                     <div>
                       <h4 className="text-sm font-bold text-slate-900">Dr. Robert Chen</h4>
-                      <p className="text-xs text-brand-600 font-medium">Cardiology Specialist</p>
+                      <p className="text-xs text-brand-700 font-medium">Interventional Cardiology</p>
                     </div>
                   </div>
-                  <span className="px-2.5 py-1 text-[11px] font-semibold bg-emerald-50 text-emerald-700 rounded-full border border-emerald-200">
-                    Available Today
-                  </span>
+                  <Badge size="sm">Available Today</Badge>
                 </div>
 
                 <div className="py-4 space-y-2.5 text-xs text-slate-600">
-                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50">
+                  <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
                     <span className="text-slate-500">Working Hours</span>
                     <span className="font-semibold text-slate-800">09:00 AM – 05:00 PM</span>
                   </div>
-                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50">
+                  <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
                     <span className="text-slate-500">Consultation Fee</span>
                     <span className="font-bold text-slate-900">$120</span>
                   </div>
-                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50">
-                    <span className="text-slate-500">Hospital Location</span>
-                    <span className="font-semibold text-slate-800">Suite 304, Main Tower</span>
+                  <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
+                    <span className="text-slate-500">Clinical Suite</span>
+                    <span className="font-semibold text-slate-800">Suite 304, Cardiology Wing</span>
                   </div>
                 </div>
 
@@ -186,17 +185,17 @@ export const LandingPage = () => {
       </section>
 
       {/* Departments Section */}
-      <section id="departments" className="py-16 lg:py-24 bg-white border-t border-slate-200/80">
+      <section id="departments" className="py-16 lg:py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-xs font-bold text-brand-600 uppercase tracking-widest">
-              Center of Clinical Excellence
+              Clinical Specializations
             </span>
-            <h2 className="text-3xl font-black text-slate-900 tracking-tight mt-1">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-1">
               Comprehensive Medical Departments
             </h2>
             <p className="text-sm text-slate-500 mt-2">
-              From cardiology to neurology and preventive diagnostics, our multidisciplinary teams provide expert patient-centric care.
+              Our multidisciplinary healthcare teams provide dedicated diagnostic and therapeutic excellence across core specialties.
             </p>
           </div>
 
@@ -206,26 +205,27 @@ export const LandingPage = () => {
               return (
                 <div
                   key={dept._id}
-                  className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-brand-500 hover:bg-white transition-all duration-200 group flex flex-col justify-between shadow-sm hover:shadow-md"
+                  className="p-5 rounded-xl bg-white border border-slate-200/80 shadow-soft hover:shadow-card hover:border-brand-300 transition-all duration-150 flex flex-col justify-between"
                 >
                   <div>
-                    <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 text-brand-600 flex items-center justify-center mb-4 group-hover:bg-brand-600 group-hover:text-white transition-colors shadow-sm">
-                      <IconComponent className="w-6 h-6" />
+                    <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 border border-brand-100 flex items-center justify-center mb-3">
+                      <IconComponent className="w-5 h-5" />
                     </div>
-                    <h3 className="text-base font-bold text-slate-900 mb-1.5">{dept.name}</h3>
+                    <h3 className="text-sm font-bold text-slate-900 mb-1">{dept.name}</h3>
                     <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
-                      {dept.description || 'Specialized diagnostic and therapeutic care.'}
+                      {dept.description || 'Dedicated clinical diagnosis and specialist therapy.'}
                     </p>
                   </div>
-                  <div className="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between text-xs">
-                    <span className="text-brand-700 font-semibold">
-                      {dept.doctorCount || 0} Specialists
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                    <span className="text-brand-700 font-semibold text-[11px]">
+                      {dept.doctorCount || 0} Physicians
                     </span>
                     <button
                       onClick={() => handleBookClick()}
-                      className="text-slate-400 group-hover:text-brand-600 transition-colors"
+                      className="text-slate-400 hover:text-brand-600 transition-colors"
+                      aria-label={`View ${dept.name}`}
                     >
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </div>
@@ -236,15 +236,15 @@ export const LandingPage = () => {
       </section>
 
       {/* Featured Doctors Section */}
-      <section id="doctors" className="py-16 lg:py-24 bg-slate-50 border-t border-slate-200/80">
+      <section id="doctors" className="py-16 lg:py-20 bg-white border-t border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
             <div>
               <span className="text-xs font-bold text-brand-600 uppercase tracking-widest">
                 Our Specialists
               </span>
-              <h2 className="text-3xl font-black text-slate-900 tracking-tight mt-1">
-                Board Certified Physicians
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-1">
+                Board-Certified Physicians
               </h2>
             </div>
             <Button
@@ -252,7 +252,7 @@ export const LandingPage = () => {
               size="sm"
               onClick={() => handleBookClick()}
             >
-              View Full Schedule
+              View All Doctors
             </Button>
           </div>
 
@@ -260,11 +260,11 @@ export const LandingPage = () => {
             {doctors.map((doc) => (
               <div
                 key={doc._id}
-                className="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
+                className="bg-white rounded-xl border border-slate-200/80 p-6 shadow-soft hover:shadow-card transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-16 h-16 rounded-2xl bg-brand-100 border border-brand-200 overflow-hidden flex-shrink-0">
+                    <div className="w-14 h-14 rounded-xl bg-brand-50 border border-brand-200 overflow-hidden flex-shrink-0">
                       {doc.user?.avatar ? (
                         <img
                           src={doc.user.avatar}
@@ -272,7 +272,7 @@ export const LandingPage = () => {
                           className="w-full h-full object-cover"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center font-bold text-brand-700 text-xl">
+                        <div className="w-full h-full flex items-center justify-center font-bold text-brand-700 text-lg">
                           {doc.user?.name?.charAt(0) || 'D'}
                         </div>
                       )}
@@ -281,10 +281,10 @@ export const LandingPage = () => {
                       <h3 className="text-base font-bold text-slate-900 truncate">
                         {doc.user?.name}
                       </h3>
-                      <p className="text-xs font-semibold text-brand-600 mt-0.5">
+                      <p className="text-xs font-semibold text-brand-700 mt-0.5">
                         {doc.specialization}
                       </p>
-                      <p className="text-xs text-slate-500 mt-0.5">
+                      <p className="text-xs text-slate-500 mt-0.5 truncate">
                         {doc.qualifications?.join(', ')}
                       </p>
                     </div>
@@ -294,10 +294,10 @@ export const LandingPage = () => {
                     {doc.bio || 'Consultant specialist providing comprehensive diagnostic and clinical therapeutic care.'}
                   </p>
 
-                  <div className="p-3 bg-slate-50 rounded-xl space-y-1.5 text-xs mb-4">
+                  <div className="p-3 bg-slate-50 rounded-xl space-y-1.5 text-xs mb-4 border border-slate-100">
                     <div className="flex justify-between">
                       <span className="text-slate-500">Department:</span>
-                      <span className="font-semibold text-slate-800">{doc.department?.name || 'General'}</span>
+                      <span className="font-semibold text-slate-800">{doc.department?.name || 'General Medicine'}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-slate-500">Room:</span>
@@ -324,48 +324,48 @@ export const LandingPage = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-16 lg:py-24 bg-white border-t border-slate-200/80">
+      <section id="services" className="py-16 lg:py-20 bg-slate-50 border-t border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-xs font-bold text-brand-600 uppercase tracking-widest">
-              Integrated Healthcare
+              Integrated Capabilities
             </span>
-            <h2 className="text-3xl font-black text-slate-900 tracking-tight mt-1">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-1">
               End-to-End Hospital Services
             </h2>
             <p className="text-sm text-slate-500 mt-2">
-              Modern facilities equipped with state-of-the-art diagnostic machinery and digital medical record coordination.
+              Designed for modern hospitals, medical centers, and clinical practices with patient-first tools.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 rounded-2xl border border-slate-200 bg-slate-50/50">
-              <div className="w-12 h-12 rounded-xl bg-brand-500 text-white flex items-center justify-center mb-4">
-                <Calendar className="w-6 h-6" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-6 rounded-xl border border-slate-200/80 bg-white shadow-soft">
+              <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 border border-brand-100 flex items-center justify-center mb-4">
+                <Calendar className="w-5 h-5" />
               </div>
               <h3 className="text-base font-bold text-slate-900 mb-2">Smart Scheduling</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Automated slot generation, instant doctor availability checking, and double-booking prevention.
+                Automated slot generation, instant doctor availability checking, real-time status updates, and conflict avoidance.
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl border border-slate-200 bg-slate-50/50">
-              <div className="w-12 h-12 rounded-xl bg-teal-500 text-white flex items-center justify-center mb-4">
-                <Activity className="w-6 h-6" />
+            <div className="p-6 rounded-xl border border-slate-200/80 bg-white shadow-soft">
+              <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 border border-teal-100 flex items-center justify-center mb-4">
+                <FileText className="w-5 h-5" />
               </div>
-              <h3 className="text-base font-bold text-slate-900 mb-2">Digital EMR & Prescriptions</h3>
+              <h3 className="text-base font-bold text-slate-900 mb-2">Electronic Medical Records</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Electronic patient records, diagnostic lab report archives, and clean printable prescriptions.
+                Complete clinical consultation logs, diagnostic reports archive, and standardized printable digital prescriptions.
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl border border-slate-200 bg-slate-50/50">
-              <div className="w-12 h-12 rounded-xl bg-blue-500 text-white flex items-center justify-center mb-4">
-                <ShieldCheck className="w-6 h-6" />
+            <div className="p-6 rounded-xl border border-slate-200/80 bg-white shadow-soft">
+              <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 border border-sky-100 flex items-center justify-center mb-4">
+                <CreditCard className="w-5 h-5" />
               </div>
-              <h3 className="text-base font-bold text-slate-900 mb-2">Billing & Pharmacy</h3>
+              <h3 className="text-base font-bold text-slate-900 mb-2">Billing & Invoicing</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Itemized invoice generation, pharmacy medication stock tracking, and secure payment processing.
+                Transparent itemized invoices, pharmacy medication dispensaries, tax breakdowns, and multiple payment options.
               </p>
             </div>
           </div>
@@ -373,27 +373,27 @@ export const LandingPage = () => {
       </section>
 
       {/* Appointment CTA Banner */}
-      <section className="py-16 bg-gradient-to-r from-brand-700 via-teal-700 to-slate-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
+      <section className="py-14 bg-brand-600 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
             Ready to Experience Quality Medical Care?
           </h2>
-          <p className="text-slate-200 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
-            Register as a patient today or sign in to consult with our specialized clinical team.
+          <p className="text-brand-100 max-w-xl mx-auto text-sm leading-relaxed">
+            Register as a patient today or sign in to consult with our board-certified clinical team.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
             <Button
               size="lg"
               variant="secondary"
               onClick={() => handleBookClick()}
-              className="w-full sm:w-auto"
+              className="w-full sm:w-auto bg-white text-brand-700 hover:bg-brand-50"
             >
               Book Consultation Now
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="bg-transparent border-white text-white hover:bg-white/10 w-full sm:w-auto"
+              className="bg-transparent border-white/50 text-white hover:bg-white/10 w-full sm:w-auto"
               onClick={() => navigate('/register')}
             >
               Create Patient Account
@@ -403,14 +403,14 @@ export const LandingPage = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 bg-slate-50 border-t border-slate-200">
+      <section id="contact" className="py-16 bg-white border-t border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-6 space-y-6">
               <span className="text-xs font-bold text-brand-600 uppercase tracking-widest">
                 Get In Touch
               </span>
-              <h2 className="text-3xl font-black text-slate-900 tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
                 Our Medical Center is Ready to Assist You
               </h2>
               <p className="text-sm text-slate-600 leading-relaxed">
@@ -419,20 +419,20 @@ export const LandingPage = () => {
 
               <div className="space-y-4 text-sm text-slate-700">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-brand-600">
-                    <MapPin className="w-5 h-5" />
+                  <div className="w-9 h-9 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-brand-600">
+                    <MapPin className="w-4 h-4" />
                   </div>
                   <span>100 Health Sciences Plaza, Medical District, NY 10001</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-brand-600">
-                    <Phone className="w-5 h-5" />
+                  <div className="w-9 h-9 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-brand-600">
+                    <Phone className="w-4 h-4" />
                   </div>
                   <span>+1 (800) 555-0199 (Front Desk & Emergency)</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-brand-600">
-                    <Mail className="w-5 h-5" />
+                  <div className="w-9 h-9 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-brand-600">
+                    <Mail className="w-4 h-4" />
                   </div>
                   <span>appointments@aurahealth.com</span>
                 </div>
@@ -440,12 +440,12 @@ export const LandingPage = () => {
             </div>
 
             {/* Quick Contact Box */}
-            <div className="lg:col-span-6 bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
-              <h3 className="text-lg font-bold text-slate-900 mb-4">Patient Inquiry Form</h3>
+            <div className="lg:col-span-6 bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200/80 shadow-soft">
+              <h3 className="text-base font-bold text-slate-900 mb-3">Patient Inquiry Form</h3>
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  alert('Thank you! Your message has been received by our front desk team.');
+                  alert('Thank you! Your inquiry has been received by our clinical reception team.');
                 }}
                 className="space-y-3 text-xs"
               >
@@ -457,7 +457,7 @@ export const LandingPage = () => {
                     type="text"
                     required
                     placeholder="Jane Doe"
-                    className="w-full px-3 py-2 text-sm rounded-xl border border-slate-300"
+                    className="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 bg-white"
                   />
                 </div>
                 <div>
@@ -468,18 +468,18 @@ export const LandingPage = () => {
                     type="email"
                     required
                     placeholder="jane@example.com"
-                    className="w-full px-3 py-2 text-sm rounded-xl border border-slate-300"
+                    className="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 bg-white"
                   />
                 </div>
                 <div>
                   <label className="block font-semibold text-slate-700 uppercase tracking-wider mb-1">
-                    Message / Clinical Inquiry
+                    Clinical Inquiry / Question
                   </label>
                   <textarea
                     rows={3}
                     required
-                    placeholder="How can we assist you?"
-                    className="w-full px-3 py-2 text-sm rounded-xl border border-slate-300"
+                    placeholder="How can our clinical team assist you?"
+                    className="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 bg-white"
                   />
                 </div>
                 <Button variant="primary" type="submit" className="w-full">

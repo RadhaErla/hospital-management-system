@@ -13,7 +13,7 @@ export const Card = ({
 }) => {
   return (
     <div
-      className={`bg-white rounded-xl border border-slate-200/80 shadow-sm transition-shadow duration-200 hover:shadow-md ${className}`}
+      className={`bg-white rounded-xl border border-slate-200/80 shadow-soft transition-all duration-150 ${className}`}
       {...props}
     >
       {(title || subtitle || action) && (
@@ -22,7 +22,9 @@ export const Card = ({
         >
           <div>
             {title && (
-              <h3 className="text-base font-semibold text-slate-900">{title}</h3>
+              <h3 className="text-sm sm:text-base font-semibold text-slate-900 tracking-tight">
+                {title}
+              </h3>
             )}
             {subtitle && (
               <p className="text-xs text-slate-500 mt-0.5">{subtitle}</p>
@@ -31,9 +33,9 @@ export const Card = ({
           {action && <div className="flex items-center gap-2">{action}</div>}
         </div>
       )}
-      <div className={`p-6 ${bodyClassName}`}>{children}</div>
+      <div className={`p-5 sm:p-6 ${bodyClassName}`}>{children}</div>
       {footer && (
-        <div className="px-6 py-3 bg-slate-50/70 border-t border-slate-100 rounded-b-xl">
+        <div className="px-6 py-3.5 bg-slate-50/70 border-t border-slate-100 rounded-b-xl text-xs text-slate-600">
           {footer}
         </div>
       )}

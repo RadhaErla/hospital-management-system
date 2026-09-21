@@ -11,6 +11,7 @@ import {
   Plus,
   Receipt,
   UserCheck,
+  Building2,
 } from 'lucide-react';
 import { Card } from '../../components/common/Card';
 import { Button } from '../../components/common/Button';
@@ -69,22 +70,23 @@ export const ReceptionistDashboard = () => {
 
   return (
     <div className="space-y-6">
-      {/* Welcome Banner */}
-      <div className="p-6 sm:p-8 bg-gradient-to-r from-indigo-800 via-brand-800 to-slate-900 rounded-3xl text-white shadow-xl shadow-indigo-900/10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+      {/* Welcome Banner (Light Healthcare Style) */}
+      <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-soft flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="space-y-1.5">
-          <span className="text-xs font-bold uppercase tracking-widest text-indigo-300">
-            Front Desk & Patient Services
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
-            Reception Portal — {user?.name}
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-xs font-semibold">
+            <Building2 className="w-3.5 h-3.5 text-brand-600" />
+            <span>Front Desk & Patient Services</span>
+          </div>
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+            Front Desk Portal — {user?.name}
           </h2>
-          <p className="text-xs sm:text-sm text-slate-200 max-w-xl">
-            Register arriving patients, manage check-in queues, coordinate specialist schedules, and process payments.
+          <p className="text-xs text-slate-500 max-w-xl">
+            Register arriving patients, manage daily check-in queues, coordinate physician visits, and collect payments.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
           <Button
-            variant="secondary"
+            variant="outline"
             icon={UserPlus}
             onClick={() => navigate('/receptionist/patients')}
           >
@@ -94,7 +96,6 @@ export const ReceptionistDashboard = () => {
             variant="primary"
             icon={Plus}
             onClick={() => setIsBookingOpen(true)}
-            className="shadow-lg"
           >
             Book Appointment
           </Button>
@@ -105,62 +106,62 @@ export const ReceptionistDashboard = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="p-5">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-              Today's Schedule
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+              Today's Visits
             </span>
-            <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
-              <Calendar className="w-5 h-5" />
+            <div className="w-9 h-9 rounded-xl bg-brand-50 text-brand-600 border border-brand-100 flex items-center justify-center">
+              <Calendar className="w-4 h-4" />
             </div>
           </div>
-          <h3 className="text-2xl font-black text-slate-900 mt-2">
+          <h3 className="text-2xl font-bold text-slate-900 mt-2 tracking-tight">
             {stats?.todayAppointments || 0}
           </h3>
-          <p className="text-[11px] text-slate-400 mt-0.5">Consultations today</p>
+          <p className="text-[11px] text-slate-500 mt-1">Consultations scheduled today</p>
         </Card>
 
         <Card className="p-5">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-              Checked-In Patients
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+              Checked-In
             </span>
-            <div className="w-9 h-9 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center">
-              <UserCheck className="w-5 h-5" />
+            <div className="w-9 h-9 rounded-xl bg-teal-50 text-teal-600 border border-teal-100 flex items-center justify-center">
+              <UserCheck className="w-4 h-4" />
             </div>
           </div>
-          <h3 className="text-2xl font-black text-slate-900 mt-2">
+          <h3 className="text-2xl font-bold text-slate-900 mt-2 tracking-tight">
             {stats?.checkedInPatients || 0}
           </h3>
-          <p className="text-[11px] text-slate-400 mt-0.5">Currently waiting / in consultation</p>
+          <p className="text-[11px] text-slate-500 mt-1">Waiting or in consultation</p>
         </Card>
 
         <Card className="p-5">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-              Pending Appointments
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+              Pending Confirmation
             </span>
-            <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
-              <Clock className="w-5 h-5" />
+            <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 border border-amber-100 flex items-center justify-center">
+              <Clock className="w-4 h-4" />
             </div>
           </div>
-          <h3 className="text-2xl font-black text-slate-900 mt-2">
+          <h3 className="text-2xl font-bold text-slate-900 mt-2 tracking-tight">
             {stats?.pendingAppointments || 0}
           </h3>
-          <p className="text-[11px] text-slate-400 mt-0.5">Require doctor confirmation</p>
+          <p className="text-[11px] text-slate-500 mt-1">Require doctor confirmation</p>
         </Card>
 
         <Card className="p-5">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
               Pending Invoices
             </span>
-            <div className="w-9 h-9 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center">
-              <CreditCard className="w-5 h-5" />
+            <div className="w-9 h-9 rounded-xl bg-rose-50 text-rose-600 border border-rose-100 flex items-center justify-center">
+              <CreditCard className="w-4 h-4" />
             </div>
           </div>
-          <h3 className="text-2xl font-black text-slate-900 mt-2">
+          <h3 className="text-2xl font-bold text-slate-900 mt-2 tracking-tight">
             {stats?.pendingPayments || 0}
           </h3>
-          <p className="text-[11px] text-rose-600 font-semibold mt-0.5">Awaiting payment settlement</p>
+          <p className="text-[11px] text-rose-600 font-semibold mt-1">Awaiting settlement</p>
         </Card>
       </div>
 
@@ -190,21 +191,21 @@ export const ReceptionistDashboard = () => {
           emptyMessage="No consultations scheduled for today."
           renderRow={(app) => (
             <tr key={app._id} className="hover:bg-slate-50/60 transition-colors">
-              <td className="px-6 py-4 font-bold text-slate-900 whitespace-nowrap">
+              <td className="px-5 py-3.5 font-bold text-slate-900 whitespace-nowrap">
                 {app.timeSlot?.startTime} – {app.timeSlot?.endTime}
               </td>
-              <td className="px-6 py-4">
+              <td className="px-5 py-3.5">
                 <div className="font-semibold text-slate-900">{app.patient?.user?.name}</div>
                 <div className="text-xs text-slate-400 font-mono">{app.patient?.patientId}</div>
               </td>
-              <td className="px-6 py-4 text-xs">
+              <td className="px-5 py-3.5 text-xs">
                 <div className="font-semibold text-slate-900">Dr. {app.doctor?.user?.name}</div>
                 <div className="text-slate-500">{app.doctor?.roomNumber || 'Room 101'}</div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
+              <td className="px-5 py-3.5 whitespace-nowrap">
                 <Badge size="sm">{app.status}</Badge>
               </td>
-              <td className="px-6 py-4 text-right space-x-2 whitespace-nowrap">
+              <td className="px-5 py-3.5 text-right space-x-2 whitespace-nowrap">
                 {['Pending', 'Confirmed'].includes(app.status) && (
                   <Button
                     variant="success"
