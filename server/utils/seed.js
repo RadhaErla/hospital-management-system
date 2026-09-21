@@ -106,6 +106,36 @@ const seedDatabase = async () => {
       avatar: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=300',
     });
 
+    // Doctor 4 (Pediatrics)
+    const doctorUser4 = await User.create({
+      name: 'Dr. Priya Sharma',
+      email: 'priya.sharma@hospital.com',
+      password: DEMO_PASSWORD,
+      role: 'doctor',
+      phone: '+1 (555) 200-3004',
+      avatar: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300',
+    });
+
+    // Doctor 5 (Orthopedics)
+    const doctorUser5 = await User.create({
+      name: 'Dr. James Wilson',
+      email: 'james.wilson@hospital.com',
+      password: DEMO_PASSWORD,
+      role: 'doctor',
+      phone: '+1 (555) 200-3005',
+      avatar: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&q=80&w=300',
+    });
+
+    // Doctor 6 (Dermatology)
+    const doctorUser6 = await User.create({
+      name: 'Dr. Lisa Anderson',
+      email: 'lisa.anderson@hospital.com',
+      password: DEMO_PASSWORD,
+      role: 'doctor',
+      phone: '+1 (555) 200-3006',
+      avatar: 'https://images.unsplash.com/photo-1651008376811-b90baee60c1f?auto=format&fit=crop&q=80&w=300',
+    });
+
     // Receptionist (Primary Demo Receptionist)
     const receptionistUser = await User.create({
       name: 'Jessica Taylor',
@@ -195,10 +225,70 @@ const seedDatabase = async () => {
       },
     });
 
+    const doctor4 = await Doctor.create({
+      user: doctorUser4._id,
+      department: deptMap['Pediatrics'],
+      specialization: 'General Pediatrics & Child Health',
+      qualifications: ['MBBS', 'MD (Pediatrics)', 'DCH'],
+      experienceYears: 10,
+      consultationFee: 90,
+      roomNumber: 'Suite 201',
+      bio: 'Caring pediatrician specializing in infant development, routine vaccinations, and adolescent healthcare.',
+      availability: {
+        workingDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        startTime: '09:00',
+        endTime: '17:00',
+        breakStart: '13:00',
+        breakEnd: '14:00',
+        slotDurationMinutes: 30,
+      },
+    });
+
+    const doctor5 = await Doctor.create({
+      user: doctorUser5._id,
+      department: deptMap['Orthopedics'],
+      specialization: 'Orthopedic Surgery & Sports Medicine',
+      qualifications: ['MBBS', 'MS (Orthopedics)', 'MCh'],
+      experienceYears: 15,
+      consultationFee: 130,
+      roomNumber: 'Suite 105',
+      bio: 'Specialist in joint reconstruction, musculoskeletal trauma care, arthritis, and sports injury rehabilitation.',
+      availability: {
+        workingDays: ['Monday', 'Tuesday', 'Thursday', 'Friday'],
+        startTime: '09:30',
+        endTime: '17:30',
+        breakStart: '13:00',
+        breakEnd: '14:00',
+        slotDurationMinutes: 30,
+      },
+    });
+
+    const doctor6 = await Doctor.create({
+      user: doctorUser6._id,
+      department: deptMap['Dermatology'],
+      specialization: 'Clinical & Cosmetic Dermatology',
+      qualifications: ['MBBS', 'MD (Dermatology)', 'DNB'],
+      experienceYears: 7,
+      consultationFee: 95,
+      roomNumber: 'Suite 208',
+      bio: 'Expert clinical dermatologist offering personalized treatment for skin, hair, and aesthetic dermatologic conditions.',
+      availability: {
+        workingDays: ['Monday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        startTime: '10:00',
+        endTime: '18:00',
+        breakStart: '13:30',
+        breakEnd: '14:30',
+        slotDurationMinutes: 30,
+      },
+    });
+
     // Update departments with head doctors
     await Department.findByIdAndUpdate(deptMap['Cardiology'], { headDoctor: doctor1._id });
     await Department.findByIdAndUpdate(deptMap['Neurology'], { headDoctor: doctor2._id });
     await Department.findByIdAndUpdate(deptMap['General Medicine'], { headDoctor: doctor3._id });
+    await Department.findByIdAndUpdate(deptMap['Pediatrics'], { headDoctor: doctor4._id });
+    await Department.findByIdAndUpdate(deptMap['Orthopedics'], { headDoctor: doctor5._id });
+    await Department.findByIdAndUpdate(deptMap['Dermatology'], { headDoctor: doctor6._id });
 
     // 4. Create Receptionist Profile
     console.log('💼 Seeding receptionist profile...');

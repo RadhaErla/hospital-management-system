@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card } from '../../components/common/Card';
 import { Button } from '../../components/common/Button';
+import { Badge } from '../../components/common/Badge';
 import { SlotPicker } from '../../components/appointments/SlotPicker';
 import api from '../../services/api';
-import { Stethoscope, Calendar, Clock, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Stethoscope, Calendar, Clock, CheckCircle2, AlertCircle, MapPin, Award, User } from 'lucide-react';
 
 export const BookAppointmentPage = () => {
   const navigate = useNavigate();
@@ -19,39 +20,70 @@ export const BookAppointmentPage = () => {
   const [notes, setNotes] = useState('');
 
   const [loading, setLoading] = useState(false);
+  const [loadingDoctors, setLoadingDoctors] = useState(false);
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
+  // Fetch all departments
   useEffect(() => {
     const fetchDepartments = async () => {
       try {
         const res = await api.get('/departments');
         if (res.data.success) setDepartments(res.data.data || []);
       } catch (e) {
-        console.error(e);
+        console.error('Failed to load departments:', e);
       }
     };
     fetchDepartments();
   }, []);
 
+  // Fetch doctors (filtered by department if selected, otherwise all active doctors)
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const url = selectedDept ? `/doctors?department=${selectedDept}` : '/doctors';
+        setLoadingDoctors(true);
+        const url = selectedDept
+          ? `/doctors?department=${selectedDept}&limit=100`
+          : '/doctors?limit=100';
         const res = await api.get(url);
-        if (res.data.success) setDoctors(res.data.data.items || []);
+        if (res.data.success) {
+          const items = res.data.data?.items || [];
+          setDoctors(items);
+
+          if (selectedDoctor) {
+            const match = items.find((d) => d._id === selectedDoctor);
+            if (match) setSelectedDoctorDetails(match);
+          }
+        }
       } catch (e) {
-        console.error(e);
+        console.error('Failed to load doctors:', e);
+      } finally {
+        setLoadingDoctors(false);
       }
     };
     fetchDoctors();
   }, [selectedDept]);
+
+  const handleDepartmentChange = (deptId) => {
+    setSelectedDept(deptId);
+    // Reset selected doctor if they are not in this department
+    if (selectedDoctorDetails && deptId && selectedDoctorDetails.department?._id !== deptId) {
+      setSelectedDoctor('');
+      setSelectedDoctorDetails(null);
+      setSelectedSlot(null);
+    }
+  };
 
   const handleDoctorSelect = (docId) => {
     setSelectedDoctor(docId);
     setSelectedSlot(null);
     const doc = doctors.find((d) => d._id === docId);
     setSelectedDoctorDetails(doc || null);
+
+    // Auto-select department if none was selected
+    if (doc?.department?._id && !selectedDept) {
+      setSelectedDept(doc.department._id);
+    }
   };
 
   const handleBook = async (e) => {
@@ -84,7 +116,7 @@ export const BookAppointmentPage = () => {
       });
 
       if (res.data.success) {
-        setSuccessMsg('Appointment booked successfully! Redirecting...');
+        setSuccessMsg('Appointment booked successfully! Redirecting to your appointments...');
         setTimeout(() => {
           navigate('/patient/appointments');
         }, 1500);
@@ -130,11 +162,7 @@ export const BookAppointmentPage = () => {
               </label>
               <select
                 value={selectedDept}
-                onChange={(e) => {
-                  setSelectedDept(e.target.value);
-                  setSelectedDoctor('');
-                  setSelectedSlot(null);
-                }}
+                onChange={(e) => handleDepartmentChange(e.target.value)}
                 className="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white"
               >
                 <option value="">-- All Departments --</option>
@@ -153,32 +181,75 @@ export const BookAppointmentPage = () => {
               <select
                 value={selectedDoctor}
                 onChange={(e) => handleDoctorSelect(e.target.value)}
-                className="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white"
+                disabled={loadingDoctors}
+                className="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white disabled:bg-slate-50"
                 required
               >
-                <option value="">-- Select Specialist --</option>
+                <option value="">
+                  {loadingDoctors ? 'Loading physicians...' : '-- Select Specialist --'}
+                </option>
                 {doctors.map((doc) => (
                   <option key={doc._id} value={doc._id}>
-                    {doc.user?.name} — {doc.specialization} (${doc.consultationFee})
+                    {doc.user?.name} — {doc.specialization} ({doc.department?.name || 'General'}) • ${doc.consultationFee}
                   </option>
                 ))}
+                {!loadingDoctors && doctors.length === 0 && (
+                  <option value="" disabled>
+                    No physicians found in this department
+                  </option>
+                )}
               </select>
             </div>
           </div>
 
           {selectedDoctorDetails && (
-            <div className="mt-4 p-4 bg-brand-50/60 rounded-xl border border-brand-100 flex items-center justify-between">
-              <div>
-                <h4 className="text-sm font-bold text-slate-900">
-                  {selectedDoctorDetails.user?.name}
-                </h4>
-                <p className="text-xs text-brand-700 font-medium">
-                  {selectedDoctorDetails.specialization} • {selectedDoctorDetails.experienceYears} years experience
-                </p>
-                <p className="text-xs text-slate-500 mt-1">{selectedDoctorDetails.bio}</p>
+            <div className="mt-4 p-4 bg-brand-50/60 rounded-xl border border-brand-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-3.5">
+                <div className="w-12 h-12 rounded-xl bg-brand-100 border border-brand-200 text-brand-700 font-bold flex items-center justify-center text-sm overflow-hidden flex-shrink-0">
+                  {selectedDoctorDetails.user?.avatar ? (
+                    <img
+                      src={selectedDoctorDetails.user.avatar}
+                      alt={selectedDoctorDetails.user.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    selectedDoctorDetails.user?.name?.charAt(0) || 'D'
+                  )}
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900">
+                    {selectedDoctorDetails.user?.name}
+                  </h4>
+                  <p className="text-xs text-brand-700 font-medium">
+                    {selectedDoctorDetails.specialization} • {selectedDoctorDetails.department?.name || 'General Medicine'}
+                  </p>
+                  <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-500 mt-1">
+                    <span className="flex items-center gap-1">
+                      <MapPin className="w-3 h-3 text-slate-400" />
+                      {selectedDoctorDetails.roomNumber || 'Room 101'}
+                    </span>
+                    {selectedDoctorDetails.experienceYears && (
+                      <span className="flex items-center gap-1">
+                        <Award className="w-3 h-3 text-slate-400" />
+                        {selectedDoctorDetails.experienceYears} years experience
+                      </span>
+                    )}
+                    {selectedDoctorDetails.availability?.workingDays && (
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3 h-3 text-slate-400" />
+                        {selectedDoctorDetails.availability.workingDays.slice(0, 3).join(', ')}
+                      </span>
+                    )}
+                  </div>
+                  {selectedDoctorDetails.bio && (
+                    <p className="text-xs text-slate-500 mt-1.5 line-clamp-2 max-w-xl">
+                      {selectedDoctorDetails.bio}
+                    </p>
+                  )}
+                </div>
               </div>
-              <div className="text-right">
-                <span className="text-xs text-slate-500 block">Fee</span>
+              <div className="text-left sm:text-right border-t sm:border-t-0 pt-2 sm:pt-0 border-brand-100 flex-shrink-0">
+                <span className="text-xs text-slate-500 block">Consultation Fee</span>
                 <span className="text-base font-bold text-slate-900">
                   ${selectedDoctorDetails.consultationFee}
                 </span>
