@@ -4,6 +4,7 @@
   "private": true,
   "description": "Production-Ready Hospital Management System (HMS) Full-Stack Application",
   "scripts": {
+    "start": "node server/server.js",
     "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
     "install-all": "npm install && npm install --prefix server && npm install --prefix client",
     "seed": "npm run seed --prefix server",
